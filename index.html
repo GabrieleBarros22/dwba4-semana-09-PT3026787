@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <!-- configura a codificação de caracteres do navegador para o UTF-8-->
+    <!-- configura a codificação de caracteres do navegador para o UTF-8 -->
     <link rel="shortcut icon" href="Imagens/favicon.ico" type="image/x-icon">
-    <!-- Adiciona o ícone de aba de navegador-->
+    <!-- Adiciona o ícone de aba de navegador -->
     <link rel="stylesheet" href="css/conteudo.css">
+    <!-- Link para o arquivo CSS -->
     <link rel="stylesheet" href="css/grid.css">
+    <!-- Outro link CSS, se necessário -->
     <title>HOME - IFSP - Pirituba</title>
-    <!-- Adiciona o título na aba do navegador-->
+    <!-- Adiciona o título na aba do navegador -->
     <script src="js/disabling.js"></script>
+    <!-- Script JavaScript, se necessário -->
 </head>
 
 <body>
 
     <header id="cabecalho">
-        <!-- Indica o cabeçalho do nosso documento-->
+        <!-- Indica o cabeçalho do nosso documento -->
 
         <nav>
             <object width="100%" height="200px" data="menu.html"></object>
@@ -28,6 +30,44 @@
     <main id="conteudo">
         <!-- indica que é o conteúdo principal dessa página -->
 
+        <!-- Slideshow Container -->
+        <div id="slideshow" class="slideshow-container">
+            <div class="slide fade">
+                <img src="Imagens/A.png" style="width:100%">
+            </div>
+
+            <div class="slide fade">
+                <img src="Imagens/B.jpg" style="width:100%">
+            </div>
+
+            <div class="slide fade">
+                <img src="Imagens/C.jpg" style="width:100%">
+            </div>
+
+            <div class="slide fade">
+                <div class="videoWrapper">
+                    <p align="center">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/5g5LQe3m8Po" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </p>
+                </div>
+                <h3 style="text-align:center;">Conheça os desafios de inovação - IFSP</h3>
+            </div>
+
+            <!-- Controles para navegação -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+
+        <!-- Indicadores de navegação (bolinhas) -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+
+        <!-- Grid Container com as imagens e descrições -->
         <div class="grid-container">
             <div class="grid-item">
                 <figure>
@@ -59,23 +99,11 @@
             </div>
         </div>
 
-        <section>
-            <h1>Conheça os desafios de inovação - IFSP</h1>
-            <div class="videoWrapper">
-                <p align="center">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5g5LQe3m8Po" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </p>
-            </div>
-        </section>
-
-
-
     </main>
 
     <footer>
         <br><br>
         <object width="100%" height="200px" data="rodape.html"></object>
-
     </footer>
 
     <!-- Adicionar scripts abaixo apenas para publicação no Firebase -->
@@ -87,6 +115,40 @@
 
     <!-- Initialize Firebase -->
     <script src="/__/firebase/init.js"></script>
+
+    <!-- Script para controle do slideshow -->
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
 
 </body>
 
